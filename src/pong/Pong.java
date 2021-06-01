@@ -33,6 +33,7 @@ public class Pong extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         initKula();
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20), actionEvent -> run(gc)));
         timeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -49,17 +50,21 @@ public class Pong extends Application {
         launch(args);
     }
 
-    private double x = ARENAX1+ARENAWIDTH/2;
-    private double y = ARENAY1+ARENAHEIGHT/2;
-    private double vx = 5;
-    private double vy = 2;
+    private static final int LICZBAKULEK = 10;
+    private double[] x = new double[LICZBAKULEK];
+    private double[] y = new double[LICZBAKULEK];
+    private double[] vx = new double[LICZBAKULEK];
+    private double[] vy = new double[LICZBAKULEK];
 
     private void initKula() {
         Random random = new Random();
-        x = random.nextDouble()*ARENAWIDTH+ARENAX1;
-        y = random.nextDouble()*ARENAHEIGHT+ARENAY1;
-        vx = 5+random.nextDouble()*20;
-        vy = 5+random.nextDouble()*20;
+
+        for (int i=0; i<LICZBAKULEK; i++) {
+            x[i] = random.nextDouble() * ARENAWIDTH + ARENAX1;
+            y[i] = random.nextDouble() * ARENAHEIGHT + ARENAY1;
+            vx[i] = 5+random.nextDouble()*20;
+            vy[i] = 5+random.nextDouble()*20;
+        }
     }
 
     private void run (GraphicsContext graphicsContext){
@@ -69,15 +74,21 @@ public class Pong extends Application {
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(ARENAX1, ARENAY1, ARENAWIDTH, ARENAHEIGHT);
 
-        if ((x <= ARENAX1+R) || (x >= ARENAX2-R))
-            vx = -vx;
-        if ((y <= ARENAY1+R) || (y >= ARENAY2-R))
-            vy = -vy;
+        for(int i=0; i<LICZBAKULEK; i++) {
+            if ((x[i] <= ARENAX1+R) || (x[i] >= ARENAX2-R))
+                vx[i] = -vx[i];
+            if ((y[i] <= ARENAY1+R) || (y[i] >= ARENAY2-R))
+                vy[i] = -vy[i];
+        }
 
-        x += vx;
-        y += vy;
+        for(int i=0; i<LICZBAKULEK; i++) {
+            x[i] += vx[i];
+            y[i] += vy[i];
+        }
 
-        graphicsContext.setFill(Color.DARKOLIVEGREEN);
-        graphicsContext.fillOval(x-R, y-R, 2*R, 2*R);
+        for(int i=0; i<LICZBAKULEK; i++) {
+            graphicsContext.setFill(Color.DARKOLIVEGREEN);
+            graphicsContext.fillOval(x[i]-R, y[i]-R, 2*R, 2*R);
+        }
     }
 }
