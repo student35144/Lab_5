@@ -58,15 +58,15 @@ public class Pong extends Application {
         graphicsContext.setFill(Color.BLACK);
         graphicsContext.fillRect(ARENAX1, ARENAY1, ARENAWIDTH, ARENAHEIGHT);
 
-        if ((x <= ARENAX1) || (x >= ARENAX2))
+        if ((x <= ARENAX1+R) || (x >= ARENAX2-R))
             vx = -vx;
-        if ((y <= ARENAY1) || (y >= ARENAY2))
+        if ((y <= ARENAY1+R) || (y >= ARENAY2-R))
             vy = -vy;
 
         x += vx;
         y += vy;
 
         graphicsContext.setFill(Color.DARKOLIVEGREEN);
-        graphicsContext.fillOval(x, y, 2*R, 2*R);
+        graphicsContext.fillOval(x-R, y-R, 2*R, 2*R);
     }
 }
