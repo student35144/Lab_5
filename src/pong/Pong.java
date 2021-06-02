@@ -33,7 +33,7 @@ public class Pong extends Application {
         initKula();
         initRugby();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20), actionEvent -> run(gc)));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(15), actionEvent -> run(gc)));
         timeline.setCycleCount(Timeline.INDEFINITE);
 
         stage.setTitle("Kulki!");
@@ -60,8 +60,8 @@ public class Pong extends Application {
             kulki[i] = new Kulka(
                     random.nextDouble()*ARENAWIDTH+ARENAX1,
                     random.nextDouble()*ARENAHEIGHT+ARENAY1,
-                    5+random.nextDouble()*20,
-                    5+random.nextDouble()*20,
+                    5+random.nextDouble()*3,
+                    5+random.nextDouble()*3,
                     Color.DARKOLIVEGREEN);
     }
     private void initRugby() {
@@ -75,6 +75,7 @@ public class Pong extends Application {
                     5+random.nextDouble()*3,
                     Color.PERU,
                     15.0,
+                    10.0,
                     10.0);
     }
 
