@@ -6,18 +6,18 @@ import javafx.scene.paint.Color;
 
 public class Kulka {
 
-    private Color color;
+    protected Color color;
     public Color getColor() { return color; }
     public void setColor(Color color) { this.color = color; }
 
-    private double radius;
+    protected double radius;
     public double getRadius() { return radius; }
     public void setRadius(double radius) { this.radius = radius; }
 
-    private double xSpeed;
-    private double ySpeed;
-    private double xPos;
-    private double yPos;
+    protected double xSpeed;
+    protected double ySpeed;
+    protected double xPos;
+    protected double yPos;
 
     Kulka(double xPos, double yPos, double xSpeed, double ySpeed) {
         this.xSpeed = xSpeed;
@@ -51,6 +51,7 @@ public class Kulka {
     public void draw(GraphicsContext graphicsContext) {
         graphicsContext.setFill(color);
         graphicsContext.fillOval(xPos-radius, yPos-radius, 2*radius, 2*radius);
+        graphicsContext.restore();
     }
 
     public void update() {
