@@ -24,7 +24,6 @@ public class Pong extends Application {
     private static final double ARENAY1 = MARGIN;
     private static final double ARENAX2 = ARENAX1 + ARENAWIDTH;
     private static final double ARENAY2 = ARENAY1 + ARENAHEIGHT;
-    private static final double R = 10;
 
     @Override
     public void start(Stage stage) {
@@ -49,7 +48,7 @@ public class Pong extends Application {
         launch(args);
     }
 
-    private static final int LICZBAKULEK = 10;
+    private static final int LICZBAKULEK = 5;
     private Kulka[] kulki = new Kulka[LICZBAKULEK];
 
     private void initKula() {
@@ -60,7 +59,8 @@ public class Pong extends Application {
                     random.nextDouble()*ARENAWIDTH+ARENAX1,
                     random.nextDouble()*ARENAHEIGHT+ARENAY1,
                     5+random.nextDouble()*20,
-                    5+random.nextDouble()*20);
+                    5+random.nextDouble()*20,
+                    Color.DARKOLIVEGREEN);
     }
 
     private void run (GraphicsContext graphicsContext){
